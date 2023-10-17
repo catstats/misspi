@@ -8,14 +8,11 @@ Missing Value Imputation in Parallel
   [![](http://cranlogs.r-pkg.org/badges/last-month/misspi?color=red)](https://cran.r-project.org/package=badger)
   <!-- badges: end -->
 
-## Install From R CRAN
-install.packages("misspi")
-
 
 <p align="center">
   <img src="logo/logo_speed_final.png">
 </p>
 
-<center>
-![](logo/logo_speed_final.png)
-<center>
+## Install From R CRAN
+install.packages("misspi")
+
