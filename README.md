@@ -10,3 +10,7 @@ Missing Value Imputation in Parallel
 
 ## Install From R CRAN
 install.packages("misspi")
+
+![](logo/logo_speed_final.png)
+
+[tutorial](misspi_tutorial.html)
