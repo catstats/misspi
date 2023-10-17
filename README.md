@@ -16,6 +16,3 @@ install.packages("misspi")
   <img src="logo/logo_speed_final.png">
 </p>
 
-<p>
-  <html src="misspi_tutorial.html">
-<p>
