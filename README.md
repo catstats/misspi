@@ -17,5 +17,5 @@ install.packages("misspi")
 </p>
 
 <p>
-  <src="misspi_tutorial.html">
+  <html src="misspi_tutorial.html">
 <p>
