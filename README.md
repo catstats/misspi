@@ -15,4 +15,3 @@ install.packages("misspi")
 <p align="center">
 ![](logo/logo_speed_final.png)
 <p>
-
