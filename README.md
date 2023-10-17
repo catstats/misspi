@@ -12,6 +12,6 @@ Missing Value Imputation in Parallel
 install.packages("misspi")
 
 
-<p align="center">
+<center>
 ![](logo/logo_speed_final.png)
-<p>
+<center>
