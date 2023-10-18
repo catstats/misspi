@@ -9,9 +9,9 @@ Missing Value Imputation in Parallel
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   <!-- badges: end -->
 
-<p align="center">
-  <img src="logo/logo_speed_final.png">
-</p>
+
+  [![misspi](logo/logo_speed_final.png)](https://github.com/catstats/misspi)
+
 
 
 ## Install From R CRAN
