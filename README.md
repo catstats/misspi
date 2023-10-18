@@ -1,4 +1,4 @@
-# misspi <a href='https://github.com/catstats/misspi'><img src='/logo/logo_speed_final.png' align='right' height="150" width="130" /></a>
+# misspi <a href='https://github.com/catstats/misspi'><img src='man/figures/logo_speed_final.png' align='right' height="150" width="130" /></a>
 Missing Value Imputation in Parallel
 
 
