@@ -7,6 +7,7 @@ Missing Value Imputation in Parallel
   [![](http://cranlogs.r-pkg.org/badges/grand-total/misspi?color=blue)](https://cran.r-project.org/package=misspi)
   [![](http://cranlogs.r-pkg.org/badges/last-month/misspi?color=red)](https://cran.r-project.org/package=misspi)
   [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+  [![DOI](https://zenodo.org/badge/706371189.svg)](https://zenodo.org/doi/10.5281/zenodo.12563060)
   <!-- badges: end --> 
 
 
