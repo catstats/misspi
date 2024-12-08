@@ -9,6 +9,8 @@ Description: A framework that boosts the imputation of 'missForest' by Stekhoven
              3. Supports multiple initializations methods.
              4. Supports early stopping that prohibits unnecessary iterations.
 License: GPL-2
+URL: https://github.com/catstats/misspi
+BugReports: https://github.com/catstats/misspi/issues
 Encoding: UTF-8
 LazyData: true
 Imports: lightgbm, doParallel, doSNOW, foreach, ggplot2, glmnet, SIS, plotly
