@@ -17,3 +17,16 @@ Missing Value Imputation in Parallel
 install.packages("misspi")
 
 
+## Tutorial
+Please find a more detailed tutorial at catstats.github.io/misspi/
+
+
+## Quick Start 
+data(toxicity, package = "misspi")
+set.seed(0)
+toxicity.miss <- missar(toxicity, 0.4, 0.2)
+toxicity.impute <- misspi(toxicity.miss)
+toxicity.impute
+
+
+
