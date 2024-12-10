@@ -18,7 +18,7 @@ install.packages("misspi")
 
 
 ## Tutorial
-Please find a more detailed tutorial at catstats.github.io/misspi/
+Please find a more detailed tutorial [here](https://catstats.github.io/misspi/)
 
 
 ## Quick Start 
