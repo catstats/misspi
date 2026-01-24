@@ -102,7 +102,6 @@
 #' iris.impute.nn <- misspi(iris.miss, model.train = neuralnet)}
 #'
 #'
-#' @docType package
 #'
 #' @author Zhongli Jiang \email{happycatstat@gmail.com}
 #'

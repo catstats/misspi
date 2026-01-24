@@ -9,7 +9,6 @@
 #' @return x a matrix with missing values in "NA".
 #' @seealso \code{\link{misspi}}
 #'
-#' @docType package
 #'
 #' @examples
 #'
