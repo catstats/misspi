@@ -19,7 +19,7 @@
 #' toxicity.miss <- missar(toxicity, 0.4, 1)
 #' toxicity.miss[1:5, 1:5]}
 #'
-#' @author Zhongli Jiang \email{jiang548@purdue.edu}
+#' @author Zhongli Jiang \email{happycatstat@gmail.com}
 #'
 #' @export
 missar <- function(x, miss.rate = 0.2, miss.var = 1){

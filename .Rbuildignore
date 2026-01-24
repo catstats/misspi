@@ -4,3 +4,4 @@
 ^misspi_tutorial\.html$
 ^cran-comments\.md$
 LICENSE
+^CRAN-SUBMISSION$

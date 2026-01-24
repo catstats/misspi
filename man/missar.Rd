@@ -34,5 +34,5 @@ toxicity.miss[1:5, 1:5]}
 \code{\link{misspi}}
 }
 \author{
-Zhongli Jiang \email{jiang548@purdue.edu}
+Zhongli Jiang \email{happycatstat@gmail.com}
 }
