@@ -1,5 +1,6 @@
 ## Test environments
 - Local macOS (R CMD check --as-cran)
+- win-builder (devel)
 
 ## Notes to CRAN
 This update addresses the "Additional issues: donttest" reported in CRAN checks.
