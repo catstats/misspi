@@ -42,7 +42,8 @@
 #' set.seed(0)
 #' data(toxicity, package = "misspi")
 #' toxicity.miss <- missar(toxicity, 0.4, 0.2)
-#' impute.res <- misspi(toxicity.miss)
+#' # Please change ncore according to your computer
+#' impute.res <- misspi(toxicity.miss, ncore = 1)
 #' x.imputed <- impute.res$x.imputed
 #'
 #' na.idx <- which(is.na(toxicity.miss))
