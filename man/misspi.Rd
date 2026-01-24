@@ -170,5 +170,5 @@ Breiman, L. (2001). Random forests. Machine learning, 45, 5-32.
 \code{\link{missar}}
 }
 \author{
-Zhongli Jiang \email{jiang548@purdue.edu}
+Zhongli Jiang \email{happycatstat@gmail.com}
 }

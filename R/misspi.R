@@ -104,7 +104,7 @@
 #'
 #' @docType package
 #'
-#' @author Zhongli Jiang \email{jiang548@purdue.edu}
+#' @author Zhongli Jiang \email{happycatstat@gmail.com}
 #'
 #' @import doParallel doSNOW glmnet lightgbm SIS foreach
 #' @importFrom utils setTxtProgressBar txtProgressBar
@@ -118,6 +118,10 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
                     model.train = NULL, pmm = TRUE, nn=3, intcol = NULL, maxiter = 10, rdiff.thre = 0.01,
                     verbose = TRUE, progress = TRUE, nlassofold = 5, isis = FALSE, char = " * ",
                     iteration = TRUE, ndecimal = NULL, ...){
+
+.ensure_nonempty_predictors <- function(X, fallback_X) {
+  if (NCOL(X) == 0L) fallback_X else X
+}
 
   s.time <- Sys.time()
 
@@ -171,7 +175,7 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
 
   ncore.limit <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
   if (nzchar(ncore.limit) && ncore.limit == "TRUE") {
-    ncore <- 2
+    ncore <- 1
     message("Set cores to 1 due to the limit ... \n")
   }
 
@@ -268,7 +272,7 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
       if(viselect %% 1 !=0 | viselect <= 0){
         stop("viselelct must be a positive integer !!!")
       }else{
-        viselect.list <- lapply(1:length(miss.ind), function(x) NULL)
+        viselect.list <- vector("list", p)
       }
     }
 
@@ -296,7 +300,10 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
 
       x.imputed.tmp <- foreach(i = miss.ind, .combine = "cbind", .options.snow=opts) %dopar% {
         miss.row.id <- miss.cord[which(miss.cord[, 2]==i), 1]
-        data.lgb <- lightgbm::lgb.Dataset(data = x[-miss.row.id, -i], label = x[-miss.row.id, i])
+        data.lgb <- lightgbm::lgb.Dataset(
+          data  = x[-miss.row.id, -i, drop = FALSE],
+          label = x[-miss.row.id, i]
+        )
         model <- lightgbm::lgb.train(params=params, data=data.lgb, verbose=-1, ...)
 
         predict.miss <- predict(model, x[miss.row.id, -i, drop=F])
@@ -320,7 +327,10 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
 
         res <- list()
         miss.row.id <- miss.cord[which(miss.cord[, 2]==i), 1]
-        data.lgb <- lightgbm::lgb.Dataset(data = x[-miss.row.id, -i], label = x[-miss.row.id, i])
+        data.lgb <- lightgbm::lgb.Dataset(
+          data  = x[-miss.row.id, -i, drop = FALSE],
+          label = x[-miss.row.id, i]
+        )
         model <- lightgbm::lgb.train(params=params, data=data.lgb, verbose=-1, ...)
 
         # Get feature importance scores from the full-feature model
@@ -405,14 +415,29 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
           params <- lgb.params
           params$n_estimators <- ntree
         }
+ 
+        fallback_set <- setdiff(seq_len(ncol(x.imputed)), i)  # numeric indices
+        active.set <- if (!is.null(viselect)) viselect.list[[i]] else fallback_set
 
-        if(!is.null(viselect)){
-          active.set <- viselect.list[[i]]
-        }else{
-          active.set <- -i
-        }
+        # if stored as names, convert to indices safely
+        if (is.character(active.set)) active.set <- match(active.set, colnames(x.imputed))
+        active.set <- active.set[!is.na(active.set)]
 
-        obs.data.lgb <- lightgbm::lgb.Dataset(data = x.imputed[-miss.row.id, active.set], label = x.imputed[-miss.row.id, i])
+        # fallback if empty
+        if (length(active.set) == 0L) active.set <- fallback_set
+
+        Xtrain <- x.imputed[-miss.row.id, active.set, drop = FALSE]
+        if (ncol(Xtrain) == 0L) stop(sprintf("No predictors available for column %d", i))
+
+        obs.data.lgb <- lightgbm::lgb.Dataset(
+          data  = Xtrain,
+          label = x.imputed[-miss.row.id, i]
+        )
+
+        obs.data.lgb <- lightgbm::lgb.Dataset(
+          data  = x.imputed[-miss.row.id, active.set, drop = FALSE],
+          label = x.imputed[-miss.row.id, i]
+        )
         model <- lightgbm::lgb.train(params=params, data=obs.data.lgb, verbose=-1, ...)
 
         predict.miss <- predict(model, x.imputed[miss.row.id, active.set, drop=F])
@@ -462,7 +487,10 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
           active.set <- -i
         }
 
-        obs.data.lgb <- lightgbm::lgb.Dataset(data = x.imputed[-miss.row.id, active.set], label = x.imputed[-miss.row.id, i])
+        obs.data.lgb <- lightgbm::lgb.Dataset(
+          data  = x.imputed[-miss.row.id, active.set, drop = FALSE],
+          label = x.imputed[-miss.row.id, i]
+        )
 
         model <- lightgbm::lgb.train(params=params, data=obs.data.lgb, verbose=-1, ...)
 

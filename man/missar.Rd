@@ -2,6 +2,7 @@
 % Please edit documentation in R/missar.R
 \docType{package}
 \name{missar}
+\alias{-package}
 \alias{missar}
 \title{Generate Data that is Missing At Random (MAR)}
 \usage{
