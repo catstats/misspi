@@ -1,2 +1,5 @@
-^.*\.Rproj$
-^\.Rproj\.user$
+^\.github$
+^docs$
+^logo$
+^misspi_tutorial\.html$
+^cran-comments\.md$
