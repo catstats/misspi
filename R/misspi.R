@@ -153,8 +153,8 @@ misspi <- function(x, ncore = NULL, init.method = "rf", method = "rf", earlystop
   }
 
 #  if(parallel){
-    if(is.null(ncore)){
-      ncore <- detectCores()
+    if (is.null(ncore)) {
+        ncore <- min(parallel::detectCores(), 2L)
     }
     if(ncore > ncol(x)){
       ncore <- ncol(x)
